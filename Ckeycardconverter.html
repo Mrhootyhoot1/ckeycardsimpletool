@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keycard Command Generator</title>
+</head>
+<body>
+
+<h1>Keycard Command Generator</h1>
+<p>basic system for creating custom keycards. Created by Mrhootyhoot1</p>
+
+<p>
+    Player ID:
+    <input type="text" id="id" placeholder="Enter hex or color">
+</p>
+
+<label for="keycardselection">Keycard Type:</label>
+<select id="keycardselection" name="selectedOption">
+    <option value="keycardcustommanagement"selected>keycardcustommanagement</option>
+    <option value="keycardcustomtaskforce">keycardcustomtaskforce</option>
+    <option value="keycardcustommetalcase">keycardcustommetalcase</option>
+</select>
+<br>
+
+<p>Inventory Name:
+<input type="text" id="inventoryName" name="Inventory name" placeholder="Enter text here">
+</p>
+
+<p>
+    Permissions:
+    <br>
+
+<label for="ContainmentLevel">ContainmentLevel:</label>
+<select id="ContainmentLevel" name="containmentLevel">
+    <option value="1"selected>1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+</select>
+
+<br>
+
+<label for="ArmoryPermissions">ArmoryPermissions:</label>
+<select id="ArmoryPermissions" name="armoryLevel">
+    <option value="1"selected>1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+</select>
+
+<br>
+
+<label for="AdminPermissions">AdminPermissions:</label>
+<select id="AdminPermissions" name="armoryLevel">
+    <option value="1"selected>1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+</select>
+</p>
+
+<p>
+    Permissions color:
+    <input type="text" id="permissionsColor" placeholder="Enter hex or color">
+</p>
+
+<p>
+    Primary Tint Color:
+    <input type="text" id="primaryTintColor" placeholder="Enter hex or color">
+</p>
+
+<p>
+    Label:
+    <input type="text" id="label" placeholder="Enter text for label">
+</p>
+
+<p>
+    Label Text Color:
+    <input type="text" id="labelTextColor" placeholder="Enter hex or color">
+</p>
+
+<p>
+    Card Holder Name:
+    <input type="text" id="cardHolderName" placeholder="Enter name">
+</p>
+
+
+
+<script>
+    var id = 1;
+    var keycardType = "keycardcustommanagement";
+    var inventoryName = "inventoryName";
+    var permissions = "1 1 1";
+    var permissionsColor = "default";
+    var primaryTint = "red";
+    var label = "placeholder";
+    var labelTextColor = "red";
+    var cardHolderName = "Mrhootyhoot1";
+    var wear = 1;
+    var command = `ckeycard ${id} ${keycardType} ${inventoryName} ${permissions} ${permissionsColor} ${primaryTint} ${label} ${labelTextColor} ${cardHolderName} ${wear}`;
+    
+    
+    function save()
+    {
+        id = document.getElementById("id").value;
+        console.log(id);
+        keycardType = document.getElementById("keycardselection").value;
+        console.log(keycardType);
+        inventoryName = document.getElementById("inventoryName").value.replace(" ", "_");
+        console.log(inventoryName);
+        permissions = document.getElementById("ContainmentLevel").value + " " + document.getElementById("ArmoryPermissions").value + " " + document.getElementById("AdminPermissions").value;
+        console.log(permissions);
+        permissionsColor = document.getElementById("permissionsColor").value;
+        console.log(permissionsColor);
+        primaryTint = document.getElementById("primaryTintColor").value;
+        console.log(primaryTint);
+        label = document.getElementById("label").value.replace(" ", "_");
+        console.log(label);
+        labelTextColor = document.getElementById("labelTextColor").value;
+        console.log(labelTextColor);
+        cardHolderName = document.getElementById("cardHolderName").value.replace(" ", "_");
+        console.log(cardHolderName);
+        wear = 1;
+        console.log(wear);
+        
+        command = `ckeycard ${id.trim()} ${keycardType.trim()} ${inventoryName.trim()} ${permissions.trim()} ${permissionsColor.trim()} ${primaryTint.trim()} ${label.trim()} ${labelTextColor.trim()} ${cardHolderName.trim()} ${wear}`;
+        
+        navigator.clipboard.writeText(command);
+        
+    }
+</script>
+
+
+
+
+<button onclick="save()">copy</button>
+</body>
+</html>
